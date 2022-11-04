@@ -35,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
 
         // TODO: add to database
 
+        MyDBHandler dbHandler = new MyDBHandler(this);
+        dbHandler.addProduct(product);
 
         productBox.setText("");
         skuBox.setText("");
@@ -45,7 +47,8 @@ public class MainActivity extends AppCompatActivity {
 
         // TODO: get from Database
 
-
+        MyDBHandler dbHandler = new MyDBHandler(this);
+        Product product = dbHandler.findProduct(productBox.getText().toString());
 
         if (product != null) {
             idView.setText(String.valueOf(product.getID()));
@@ -60,6 +63,8 @@ public class MainActivity extends AppCompatActivity {
 
         // TODO: remove from database
 
+        MyDBHandler dbHandler = new MyDBHandler(this);
+        boolean result = dbHandler.deleteProduct(productBox.getText().toString());
 
         if (result) {
             idView.setText("Record Deleted");
